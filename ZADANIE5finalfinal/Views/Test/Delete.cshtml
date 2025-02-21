@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Delete";
+}
+@model ZADANIE5finalfinal.Models.Klient
+
+<h3>
+    Delete person
+</h3>
+
+<form asp-action="Delete" method="post">
+    <div class="form-group">
+        <label asp-for="Name">
+            Name
+        </label>
+        <input asp-for="Name" type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname">
+            Surname
+        </label>
+        <input asp-for="Surname" type="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PESEL">
+            Pesel
+        </label>
+        <input asp-for="PESEL" type="text" class="form-control id="PESEL" />
+    </div>
+    <div class="form-group">
+        <label asp-for="BirthYear">
+            Rok Urodzenia
+        </label>
+        <input asp-for="BirthYear" type="number" class="form-control" id="BirthYear" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Płeć">
+            Płeć
+        </label>
+        <input asp-for="Płeć" type="number" class="form-control" id="Płeć" readonly />
+    </div>
+    <button type="submit" class="btn btn-primary">
+        Submit
+    </button>
+
+</form>
+
+
+

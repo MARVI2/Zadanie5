@@ -1,0 +1,95 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<ZADANIE5finalfinal.Models.Klient>
+@{
+    ViewData["Title"] = "Index";
+}
+<a asp-action="Create" class="btn btn-primary">
+    Dodaj
+</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Surname
+            </th>
+            <th>
+                PESEL
+            </th>
+            <th>
+                Rok urodznia
+            </th>
+            <th>
+                Płeć
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var klient in Model)
+        {
+            <tr>
+                <td>
+                    @klient.Name
+                </td>
+                <td>
+                    @klient.Surname
+                </td>
+                <td>
+                    @klient.PESEL
+                </td>
+                <td>
+                    @klient.BirthYear
+                </td>
+                <td>
+                    @if(klient.Płeć == 1)
+                    {
+                        <p>Mężczyzna</p>
+                    }
+                    else
+                    {
+                        <p>Nie Mężczyzna</p>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@klient.Id" class="btn btn-primary">
+                        Edit
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@klient.Id" class="btn btn-danger">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="btn-group">
+    <form method="post" asp-action="DownloadCVS">
+        <button type="submit" class="btn btn-primary">
+            Download CSV
+        </button>
+    </form>
+
+    <form method="post" asp-action="DownloadXLSX">
+        <button type="submit" class="btn btn-primary">
+            DownLoad XLSX
+        </button>
+    </form>
+</div>
+<div>
+    <a asp-action="Import" class="btn btn-primary">
+        Import
+    </a>
+</div>
+
+<div class="text-danger">
+    @TempData["FileError"]
+</div>
+
+
