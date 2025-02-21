@@ -152,8 +152,9 @@ namespace ZADANIE5finalfinal.Controllers
         {
             if(xlsxFile != null)
             {
-                var stream = new MemoryStream();
-                await xlsxFile.CopyToAsync(stream);
+                //var stream = new MemoryStream();
+                //await xlsxFile.CopyToAsync(stream);
+                var stream = xlsxFile.OpenReadStream();
                 var klienci = _XLSXService.ReadXLSXFile(stream);
 
 				foreach (var klient in klienci)
@@ -175,11 +176,13 @@ namespace ZADANIE5finalfinal.Controllers
         [HttpPost]
         public async Task<IActionResult> Import(IFormFile importFile,string fileType)
         {
-            if (importFile.FileName.Split(".")[^1] != "csv" || importFile.FileName.Split(".")[^1] != "xlsx")
+
+			if (importFile.FileName.Split(".")[^1] != "csv" && importFile.FileName.Split(".")[^1] != "xlsx")
             {
                 TempData["FileError"] = "Złe rozszserzenir pliku";
-                return RedirectToAction("Index");
-            }
+				return RedirectToAction("Index");
+			}
+
             if (fileType == "csv")
             {
                 await CsvImport(importFile);
